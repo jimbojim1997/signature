@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.msTop = new System.Windows.Forms.MenuStrip();
             this.tabSig = new System.Windows.Forms.TabControl();
             this.tabSigData = new System.Windows.Forms.TabPage();
@@ -70,6 +72,7 @@
             this.tabSig.Controls.Add(this.tabSigData);
             this.tabSig.Controls.Add(this.tabSigOptions);
             this.tabSig.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabSig.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabSig.Location = new System.Drawing.Point(0, 24);
             this.tabSig.Name = "tabSig";
             this.tabSig.SelectedIndex = 0;
@@ -79,10 +82,10 @@
             // tabSigData
             // 
             this.tabSigData.Controls.Add(this.dgvData);
-            this.tabSigData.Location = new System.Drawing.Point(4, 22);
+            this.tabSigData.Location = new System.Drawing.Point(4, 23);
             this.tabSigData.Name = "tabSigData";
             this.tabSigData.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSigData.Size = new System.Drawing.Size(906, 525);
+            this.tabSigData.Size = new System.Drawing.Size(906, 524);
             this.tabSigData.TabIndex = 0;
             this.tabSigData.Text = "Data";
             this.tabSigData.UseVisualStyleBackColor = true;
@@ -93,17 +96,17 @@
             this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvData.Location = new System.Drawing.Point(3, 3);
             this.dgvData.Name = "dgvData";
-            this.dgvData.Size = new System.Drawing.Size(900, 519);
+            this.dgvData.Size = new System.Drawing.Size(900, 518);
             this.dgvData.TabIndex = 0;
             // 
             // tabSigOptions
             // 
             this.tabSigOptions.Controls.Add(this.panel1);
             this.tabSigOptions.Controls.Add(this.dgvFields);
-            this.tabSigOptions.Location = new System.Drawing.Point(4, 22);
+            this.tabSigOptions.Location = new System.Drawing.Point(4, 23);
             this.tabSigOptions.Name = "tabSigOptions";
             this.tabSigOptions.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSigOptions.Size = new System.Drawing.Size(906, 525);
+            this.tabSigOptions.Size = new System.Drawing.Size(906, 524);
             this.tabSigOptions.TabIndex = 1;
             this.tabSigOptions.Text = "Options";
             this.tabSigOptions.UseVisualStyleBackColor = true;
@@ -125,11 +128,12 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(458, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(445, 519);
+            this.panel1.Size = new System.Drawing.Size(445, 518);
             this.panel1.TabIndex = 1;
             // 
             // btnResetFields
             // 
+            this.btnResetFields.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnResetFields.Location = new System.Drawing.Point(219, 493);
             this.btnResetFields.Name = "btnResetFields";
             this.btnResetFields.Size = new System.Drawing.Size(96, 21);
@@ -140,6 +144,7 @@
             // 
             // btnUpdateFields
             // 
+            this.btnUpdateFields.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateFields.Location = new System.Drawing.Point(117, 493);
             this.btnUpdateFields.Name = "btnUpdateFields";
             this.btnUpdateFields.Size = new System.Drawing.Size(96, 21);
@@ -150,6 +155,7 @@
             // 
             // btnCreateSignatures
             // 
+            this.btnCreateSignatures.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateSignatures.Location = new System.Drawing.Point(6, 493);
             this.btnCreateSignatures.Name = "btnCreateSignatures";
             this.btnCreateSignatures.Size = new System.Drawing.Size(105, 21);
@@ -160,6 +166,7 @@
             // 
             // btnFileNamesVarify
             // 
+            this.btnFileNamesVarify.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFileNamesVarify.Location = new System.Drawing.Point(389, 72);
             this.btnFileNamesVarify.Name = "btnFileNamesVarify";
             this.btnFileNamesVarify.Size = new System.Drawing.Size(51, 24);
@@ -170,6 +177,7 @@
             // 
             // tbFileNames
             // 
+            this.tbFileNames.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbFileNames.Location = new System.Drawing.Point(88, 75);
             this.tbFileNames.Name = "tbFileNames";
             this.tbFileNames.Size = new System.Drawing.Size(295, 20);
@@ -180,12 +188,13 @@
             this.lblFileNames.AutoSize = true;
             this.lblFileNames.Location = new System.Drawing.Point(3, 78);
             this.lblFileNames.Name = "lblFileNames";
-            this.lblFileNames.Size = new System.Drawing.Size(71, 13);
+            this.lblFileNames.Size = new System.Drawing.Size(71, 14);
             this.lblFileNames.TabIndex = 6;
             this.lblFileNames.Text = "Save Names:";
             // 
             // btnSaveLocation
             // 
+            this.btnSaveLocation.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveLocation.Location = new System.Drawing.Point(389, 40);
             this.btnSaveLocation.Name = "btnSaveLocation";
             this.btnSaveLocation.Size = new System.Drawing.Size(51, 24);
@@ -196,6 +205,7 @@
             // 
             // tbSaveLocation
             // 
+            this.tbSaveLocation.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbSaveLocation.Location = new System.Drawing.Point(88, 42);
             this.tbSaveLocation.Name = "tbSaveLocation";
             this.tbSaveLocation.ReadOnly = true;
@@ -207,12 +217,13 @@
             this.lblSaveLocation.AutoSize = true;
             this.lblSaveLocation.Location = new System.Drawing.Point(3, 45);
             this.lblSaveLocation.Name = "lblSaveLocation";
-            this.lblSaveLocation.Size = new System.Drawing.Size(79, 13);
+            this.lblSaveLocation.Size = new System.Drawing.Size(79, 14);
             this.lblSaveLocation.TabIndex = 3;
             this.lblSaveLocation.Text = "Save Location:";
             // 
             // btnTemplateFileOpen
             // 
+            this.btnTemplateFileOpen.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTemplateFileOpen.Location = new System.Drawing.Point(389, 7);
             this.btnTemplateFileOpen.Name = "btnTemplateFileOpen";
             this.btnTemplateFileOpen.Size = new System.Drawing.Size(51, 24);
@@ -223,6 +234,7 @@
             // 
             // tbTemplateFile
             // 
+            this.tbTemplateFile.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbTemplateFile.Location = new System.Drawing.Point(88, 9);
             this.tbTemplateFile.Name = "tbTemplateFile";
             this.tbTemplateFile.ReadOnly = true;
@@ -234,7 +246,7 @@
             this.lblTemplateFile.AutoSize = true;
             this.lblTemplateFile.Location = new System.Drawing.Point(3, 12);
             this.lblTemplateFile.Name = "lblTemplateFile";
-            this.lblTemplateFile.Size = new System.Drawing.Size(73, 13);
+            this.lblTemplateFile.Size = new System.Drawing.Size(71, 14);
             this.lblTemplateFile.TabIndex = 0;
             this.lblTemplateFile.Text = "Template File:";
             // 
@@ -248,18 +260,22 @@
             this.dgvFields.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.dgvFields.Location = new System.Drawing.Point(3, 3);
             this.dgvFields.Name = "dgvFields";
-            this.dgvFields.Size = new System.Drawing.Size(445, 519);
+            this.dgvFields.Size = new System.Drawing.Size(445, 518);
             this.dgvFields.TabIndex = 0;
             // 
             // name
             // 
             this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.name.DefaultCellStyle = dataGridViewCellStyle5;
             this.name.HeaderText = "Name";
             this.name.Name = "name";
             // 
             // field
             // 
             this.field.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.field.DefaultCellStyle = dataGridViewCellStyle6;
             this.field.HeaderText = "Field";
             this.field.Name = "field";
             // 

@@ -64,6 +64,7 @@ namespace Signature
             while((start = text.IndexOf(field)) != -1)// loop through all fields
             {
                 //check conditionals before [CONDITIONAL~][field]
+                int removeAmount = 0;
                 if(start >= 2)
                 {
                     if (text.Substring(start - 2, 2) == "~]")
@@ -71,11 +72,12 @@ namespace Signature
                         int layer = 0;
                         for (int x = start - 2; x >= 0; x--)
                         {
-                            if (text[x] == ']')
+                            char current = text[x];
+                            if (current == ']')
                             {
                                 layer++;
                             }
-                            else if (text[x] == '[')
+                            else if (current == '[')
                             {
                                 if (layer > 0)
                                 {
@@ -83,13 +85,17 @@ namespace Signature
                                 }
                                 else if (String.IsNullOrEmpty(data))
                                 {
-                                    text = text.Remove(x, start - x);
+                                    string newText = text.Remove(x, start - x);
+                                    removeAmount = text.Length - newText.Length;
+                                    text = newText;
                                     break;
                                 }
                                 else
                                 {
-                                    text = text.Remove(x, 1);
-                                    text = text.Remove(start - 3, 2);
+                                    string newText = text.Remove(x, 1);
+                                    newText = newText.Remove(start - 3, 2);
+                                    removeAmount = text.Length - newText.Length;
+                                    text = newText;
                                     break;
                                 }
                             }
@@ -98,19 +104,20 @@ namespace Signature
                 }
 
                 //check conditionals after [field][~CONDITIONAL]
+                start -= removeAmount;
                 if (start + field.Length < text.Length)
                 {
-                    if (text.Substring(start + field.Length - 3, 2) == "[~")
+                    if(text.Substring(start + field.Length, 2) == "[~")
                     {
                         int layer = 0;
-                        for (int x = start + field.Length-1; x < text.Length; x++)
+                        for (int x = start + field.Length + 1; x < text.Length; x++)
                         {
                             char current = text[x];
-                            if (text[x] == '[')
+                            if (current == '[')
                             {
                                 layer++;
                             }
-                            else if (text[x] == ']')
+                            else if (current == ']')
                             {
                                 if (layer > 0)
                                 {
@@ -118,13 +125,14 @@ namespace Signature
                                 }
                                 else if (String.IsNullOrEmpty(data))
                                 {
-                                    text = text.Remove(start + field.Length, x);
+                                    text.Substring(start + field.Length, x - (start + field.Length));
+                                    text = text.Remove(start + field.Length, x + 1 - (start + field.Length));
                                     break;
                                 }
                                 else
                                 {
                                     text = text.Remove(x, 1);
-                                    text = text.Remove(start + field.Length - 3, 2);
+                                    text = text.Remove(start + field.Length, 2);
                                     break;
                                 }
                             }
@@ -219,7 +227,7 @@ namespace Signature
             }
         }
 
-        private void btnUpdateFields_Click(object sender, EventArgs e)
+        private void btnFieldsUpdate_Click(object sender, EventArgs e)
         {
             Field[] headers = getFields();
             dgvData.Columns.Clear();
@@ -236,13 +244,13 @@ namespace Signature
             dgvData.Columns.RemoveAt(dgvData.Columns.Count-1);
         }
 
-        private void btnResetFields_Click(object sender, EventArgs e)
+        private void btnFieldsReset_Click(object sender, EventArgs e)
         {
             dgvFields.Rows.Clear();
             dgvData.Columns.Clear();
         }
 
-        private void btnTemplateFileOpen_Click(object sender, EventArgs e)
+        private void btnTemplateFileLoad_Click(object sender, EventArgs e)
         {
             OpenFileDialog fd = new OpenFileDialog();
             fd.Title = "Signature Template";
@@ -254,7 +262,13 @@ namespace Signature
                 tbTemplateFile.Text = fd.FileName;
 
                 templateData = readFile(fd.FileName);
+                wbTemplate.Document.Body.InnerHtml = templateData;
             }
+        }
+
+        private void btnTemplateFileSave_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void btnSaveLocation_Click(object sender, EventArgs e)
@@ -310,8 +324,16 @@ namespace Signature
             }
 
         }
+
+
         #endregion
 
-        
+        private void window_Load(object sender, EventArgs e)
+        {
+            string text = "[before:~][f1][~:after]";
+            Console.WriteLine(text);
+            string output = replaceField(text, "f1", "");
+            Console.WriteLine(output);
+        }
     }
 }

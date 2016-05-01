@@ -63,51 +63,10 @@ namespace Signature
             int start;
             while((start = text.IndexOf(field)) != -1)// loop through all fields
             {
-                //check conditionals before [CONDITIONAL~][field]
-                int removeAmount = 0;
-                if(start >= 2)
-                {
-                    if (text.Substring(start - 2, 2) == "~]")
-                    {
-                        int layer = 0;
-                        for (int x = start - 2; x >= 0; x--)
-                        {
-                            char current = text[x];
-                            if (current == ']')
-                            {
-                                layer++;
-                            }
-                            else if (current == '[')
-                            {
-                                if (layer > 0)
-                                {
-                                    layer--;
-                                }
-                                else if (String.IsNullOrEmpty(data))
-                                {
-                                    string newText = text.Remove(x, start - x);
-                                    removeAmount = text.Length - newText.Length;
-                                    text = newText;
-                                    break;
-                                }
-                                else
-                                {
-                                    string newText = text.Remove(x, 1);
-                                    newText = newText.Remove(start - 3, 2);
-                                    removeAmount = text.Length - newText.Length;
-                                    text = newText;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-
                 //check conditionals after [field][~CONDITIONAL]
-                start -= removeAmount;
                 if (start + field.Length < text.Length)
                 {
-                    if(text.Substring(start + field.Length, 2) == "[~")
+                    if (text.Substring(start + field.Length, 2) == "[~")
                     {
                         int layer = 0;
                         for (int x = start + field.Length + 1; x < text.Length; x++)
@@ -139,6 +98,42 @@ namespace Signature
                         }
                     }
                 }
+
+                //check conditionals before [CONDITIONAL~][field]
+                if (start >= 2)
+                {
+                    if (text.Substring(start - 2, 2) == "~]")
+                    {
+                        int layer = 0;
+                        for (int x = start - 2; x >= 0; x--)
+                        {
+                            char current = text[x];
+                            if (current == ']')
+                            {
+                                layer++;
+                            }
+                            else if (current == '[')
+                            {
+                                if (layer > 0)
+                                {
+                                    layer--;
+                                }
+                                else if (String.IsNullOrEmpty(data))
+                                {
+                                    text = text.Remove(x, start - x);
+                                    break;
+                                }
+                                else
+                                {
+                                    text = text.Remove(x, 1);
+                                    text = text.Remove(start - 3, 2);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
                 text = ReplaceFirst(text, field, data);
             }
             return text;
@@ -330,10 +325,7 @@ namespace Signature
 
         private void window_Load(object sender, EventArgs e)
         {
-            string text = "[before:~][f1][~:after]";
-            Console.WriteLine(text);
-            string output = replaceField(text, "f1", "");
-            Console.WriteLine(output);
+
         }
     }
 }

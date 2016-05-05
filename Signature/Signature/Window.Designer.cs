@@ -56,6 +56,9 @@
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.field = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabSig = new System.Windows.Forms.TabControl();
+            this.btnFieldsLoadFromTemplate = new System.Windows.Forms.Button();
+            this.btnFieldsLoadFromFile = new System.Windows.Forms.Button();
+            this.btnFieldsSaveToFile = new System.Windows.Forms.Button();
             this.tabSigFinish.SuspendLayout();
             this.tabSigData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
@@ -259,6 +262,9 @@
             // 
             // tabSigFormat
             // 
+            this.tabSigFormat.Controls.Add(this.btnFieldsSaveToFile);
+            this.tabSigFormat.Controls.Add(this.btnFieldsLoadFromFile);
+            this.tabSigFormat.Controls.Add(this.btnFieldsLoadFromTemplate);
             this.tabSigFormat.Controls.Add(this.btnFieldsReset);
             this.tabSigFormat.Controls.Add(this.btnFieldsUpdate);
             this.tabSigFormat.Controls.Add(this.dgvFields);
@@ -272,9 +278,9 @@
             // btnFieldsReset
             // 
             this.btnFieldsReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFieldsReset.Location = new System.Drawing.Point(818, 33);
+            this.btnFieldsReset.Location = new System.Drawing.Point(787, 153);
             this.btnFieldsReset.Name = "btnFieldsReset";
-            this.btnFieldsReset.Size = new System.Drawing.Size(80, 24);
+            this.btnFieldsReset.Size = new System.Drawing.Size(111, 24);
             this.btnFieldsReset.TabIndex = 3;
             this.btnFieldsReset.Text = "Reset Fields";
             this.btnFieldsReset.UseVisualStyleBackColor = true;
@@ -283,9 +289,9 @@
             // btnFieldsUpdate
             // 
             this.btnFieldsUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFieldsUpdate.Location = new System.Drawing.Point(818, 3);
+            this.btnFieldsUpdate.Location = new System.Drawing.Point(787, 123);
             this.btnFieldsUpdate.Name = "btnFieldsUpdate";
-            this.btnFieldsUpdate.Size = new System.Drawing.Size(80, 24);
+            this.btnFieldsUpdate.Size = new System.Drawing.Size(111, 24);
             this.btnFieldsUpdate.TabIndex = 2;
             this.btnFieldsUpdate.Text = "Update Fields";
             this.btnFieldsUpdate.UseVisualStyleBackColor = true;
@@ -303,7 +309,7 @@
             this.dgvFields.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.dgvFields.Location = new System.Drawing.Point(8, 3);
             this.dgvFields.Name = "dgvFields";
-            this.dgvFields.Size = new System.Drawing.Size(804, 518);
+            this.dgvFields.Size = new System.Drawing.Size(773, 518);
             this.dgvFields.TabIndex = 1;
             // 
             // name
@@ -324,8 +330,8 @@
             // 
             // tabSig
             // 
-            this.tabSig.Controls.Add(this.tabSigFormat);
             this.tabSig.Controls.Add(this.tabSigTemplate);
+            this.tabSig.Controls.Add(this.tabSigFormat);
             this.tabSig.Controls.Add(this.tabSigData);
             this.tabSig.Controls.Add(this.tabSigFinish);
             this.tabSig.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -335,6 +341,39 @@
             this.tabSig.SelectedIndex = 0;
             this.tabSig.Size = new System.Drawing.Size(914, 551);
             this.tabSig.TabIndex = 1;
+            // 
+            // btnFieldsLoadFromTemplate
+            // 
+            this.btnFieldsLoadFromTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFieldsLoadFromTemplate.Location = new System.Drawing.Point(787, 3);
+            this.btnFieldsLoadFromTemplate.Name = "btnFieldsLoadFromTemplate";
+            this.btnFieldsLoadFromTemplate.Size = new System.Drawing.Size(111, 24);
+            this.btnFieldsLoadFromTemplate.TabIndex = 4;
+            this.btnFieldsLoadFromTemplate.Text = "Load From Template";
+            this.btnFieldsLoadFromTemplate.UseVisualStyleBackColor = true;
+            this.btnFieldsLoadFromTemplate.Click += new System.EventHandler(this.btnFieldsLoadFromTemplate_Click);
+            // 
+            // btnFieldsLoadFromFile
+            // 
+            this.btnFieldsLoadFromFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFieldsLoadFromFile.Location = new System.Drawing.Point(787, 33);
+            this.btnFieldsLoadFromFile.Name = "btnFieldsLoadFromFile";
+            this.btnFieldsLoadFromFile.Size = new System.Drawing.Size(111, 24);
+            this.btnFieldsLoadFromFile.TabIndex = 5;
+            this.btnFieldsLoadFromFile.Text = "Load From File";
+            this.btnFieldsLoadFromFile.UseVisualStyleBackColor = true;
+            this.btnFieldsLoadFromFile.Click += new System.EventHandler(this.btnFieldsLoadFromFile_Click);
+            // 
+            // btnFieldsSaveToFile
+            // 
+            this.btnFieldsSaveToFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFieldsSaveToFile.Location = new System.Drawing.Point(787, 63);
+            this.btnFieldsSaveToFile.Name = "btnFieldsSaveToFile";
+            this.btnFieldsSaveToFile.Size = new System.Drawing.Size(111, 24);
+            this.btnFieldsSaveToFile.TabIndex = 6;
+            this.btnFieldsSaveToFile.Text = "Save To File";
+            this.btnFieldsSaveToFile.UseVisualStyleBackColor = true;
+            this.btnFieldsSaveToFile.Click += new System.EventHandler(this.btnFieldsSaveToFile_Click);
             // 
             // window
             // 
@@ -390,6 +429,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn field;
         private System.Windows.Forms.TabControl tabSig;
+        private System.Windows.Forms.Button btnFieldsSaveToFile;
+        private System.Windows.Forms.Button btnFieldsLoadFromFile;
+        private System.Windows.Forms.Button btnFieldsLoadFromTemplate;
     }
 }
 

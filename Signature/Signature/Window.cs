@@ -222,6 +222,32 @@ namespace Signature
             }
         }
 
+        private void btnFieldsLoadFromTemplate_Click(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(templateData))
+            {
+                MatchCollection matchs = Regex.Matches(templateData, @"\[([^~\[\]]+)\]");
+                foreach(Match match in matchs)
+                {
+                    DataGridViewRow row = (DataGridViewRow)dgvFields.Rows[0].Clone();
+                    row.Cells[0].Value = match.Groups[1].Value;
+                    row.Cells[1].Value = match.Groups[1].Value;
+
+                    dgvFields.Rows.Add(row);
+                }
+            }
+        }
+
+        private void btnFieldsLoadFromFile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnFieldsSaveToFile_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnFieldsUpdate_Click(object sender, EventArgs e)
         {
             Field[] headers = getFields();

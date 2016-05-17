@@ -414,6 +414,7 @@
             this.MainMenuStrip = this.msTop;
             this.Name = "window";
             this.Text = "Signature";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.window_FormClosing);
             this.Load += new System.EventHandler(this.window_Load);
             this.tabSigFinish.ResumeLayout(false);
             this.tabSigFinish.PerformLayout();

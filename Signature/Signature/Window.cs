@@ -416,12 +416,23 @@ namespace Signature
 
         }
 
-
+        private void window_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                if (MessageBox.Show("Any unsaved work will be lost!\nContinue?", "Warning!", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
         #endregion
 
         private void window_Load(object sender, EventArgs e)
         {
 
         }
+
+        
     }
 }

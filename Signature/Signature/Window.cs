@@ -271,6 +271,14 @@ namespace Signature
 
         private void btnFieldsUpdate_Click(object sender, EventArgs e)
         {
+            if(dgvData.Rows.Count > 1)
+            {
+                if(MessageBox.Show("You have entries in the Data tab, doing this will delete this data.\nContinue?","Warning!", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
             Field[] headers = getFields();
             dgvData.Columns.Clear();
             foreach(Field field in headers)
@@ -288,6 +296,13 @@ namespace Signature
 
         private void btnFieldsReset_Click(object sender, EventArgs e)
         {
+            if (dgvData.Rows.Count > 1)
+            {
+                if (MessageBox.Show("You have entries in the Data tab, doing this will delete this data.\nContinue?", "Warning!", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    return;
+                }
+            }
             dgvFields.Rows.Clear();
             dgvData.Columns.Clear();
         }

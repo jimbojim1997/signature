@@ -50,15 +50,17 @@
             this.pnlWebBrowse = new System.Windows.Forms.Panel();
             this.wbTemplate = new System.Windows.Forms.WebBrowser();
             this.tabSigFormat = new System.Windows.Forms.TabPage();
+            this.btnFieldsSaveToFile = new System.Windows.Forms.Button();
+            this.btnFieldsLoadFromFile = new System.Windows.Forms.Button();
+            this.btnFieldsLoadFromTemplate = new System.Windows.Forms.Button();
             this.btnFieldsReset = new System.Windows.Forms.Button();
             this.btnFieldsUpdate = new System.Windows.Forms.Button();
             this.dgvFields = new System.Windows.Forms.DataGridView();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.field = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabSig = new System.Windows.Forms.TabControl();
-            this.btnFieldsLoadFromTemplate = new System.Windows.Forms.Button();
-            this.btnFieldsLoadFromFile = new System.Windows.Forms.Button();
-            this.btnFieldsSaveToFile = new System.Windows.Forms.Button();
+            this.btnFieldsMoveDown = new System.Windows.Forms.Button();
+            this.btnFieldsMoveUp = new System.Windows.Forms.Button();
             this.tabSigFinish.SuspendLayout();
             this.tabSigData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
@@ -262,6 +264,8 @@
             // 
             // tabSigFormat
             // 
+            this.tabSigFormat.Controls.Add(this.btnFieldsMoveDown);
+            this.tabSigFormat.Controls.Add(this.btnFieldsMoveUp);
             this.tabSigFormat.Controls.Add(this.btnFieldsSaveToFile);
             this.tabSigFormat.Controls.Add(this.btnFieldsLoadFromFile);
             this.tabSigFormat.Controls.Add(this.btnFieldsLoadFromTemplate);
@@ -275,10 +279,43 @@
             this.tabSigFormat.Text = "Format";
             this.tabSigFormat.UseVisualStyleBackColor = true;
             // 
+            // btnFieldsSaveToFile
+            // 
+            this.btnFieldsSaveToFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFieldsSaveToFile.Location = new System.Drawing.Point(787, 63);
+            this.btnFieldsSaveToFile.Name = "btnFieldsSaveToFile";
+            this.btnFieldsSaveToFile.Size = new System.Drawing.Size(111, 24);
+            this.btnFieldsSaveToFile.TabIndex = 6;
+            this.btnFieldsSaveToFile.Text = "Save To File";
+            this.btnFieldsSaveToFile.UseVisualStyleBackColor = true;
+            this.btnFieldsSaveToFile.Click += new System.EventHandler(this.btnFieldsSaveToFile_Click);
+            // 
+            // btnFieldsLoadFromFile
+            // 
+            this.btnFieldsLoadFromFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFieldsLoadFromFile.Location = new System.Drawing.Point(787, 33);
+            this.btnFieldsLoadFromFile.Name = "btnFieldsLoadFromFile";
+            this.btnFieldsLoadFromFile.Size = new System.Drawing.Size(111, 24);
+            this.btnFieldsLoadFromFile.TabIndex = 5;
+            this.btnFieldsLoadFromFile.Text = "Load From File";
+            this.btnFieldsLoadFromFile.UseVisualStyleBackColor = true;
+            this.btnFieldsLoadFromFile.Click += new System.EventHandler(this.btnFieldsLoadFromFile_Click);
+            // 
+            // btnFieldsLoadFromTemplate
+            // 
+            this.btnFieldsLoadFromTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFieldsLoadFromTemplate.Location = new System.Drawing.Point(787, 3);
+            this.btnFieldsLoadFromTemplate.Name = "btnFieldsLoadFromTemplate";
+            this.btnFieldsLoadFromTemplate.Size = new System.Drawing.Size(111, 24);
+            this.btnFieldsLoadFromTemplate.TabIndex = 4;
+            this.btnFieldsLoadFromTemplate.Text = "Load From Template";
+            this.btnFieldsLoadFromTemplate.UseVisualStyleBackColor = true;
+            this.btnFieldsLoadFromTemplate.Click += new System.EventHandler(this.btnFieldsLoadFromTemplate_Click);
+            // 
             // btnFieldsReset
             // 
             this.btnFieldsReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFieldsReset.Location = new System.Drawing.Point(787, 153);
+            this.btnFieldsReset.Location = new System.Drawing.Point(787, 213);
             this.btnFieldsReset.Name = "btnFieldsReset";
             this.btnFieldsReset.Size = new System.Drawing.Size(111, 24);
             this.btnFieldsReset.TabIndex = 3;
@@ -289,7 +326,7 @@
             // btnFieldsUpdate
             // 
             this.btnFieldsUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFieldsUpdate.Location = new System.Drawing.Point(787, 123);
+            this.btnFieldsUpdate.Location = new System.Drawing.Point(787, 183);
             this.btnFieldsUpdate.Name = "btnFieldsUpdate";
             this.btnFieldsUpdate.Size = new System.Drawing.Size(111, 24);
             this.btnFieldsUpdate.TabIndex = 2;
@@ -342,38 +379,27 @@
             this.tabSig.Size = new System.Drawing.Size(914, 551);
             this.tabSig.TabIndex = 1;
             // 
-            // btnFieldsLoadFromTemplate
+            // btnFieldsMoveDown
             // 
-            this.btnFieldsLoadFromTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFieldsLoadFromTemplate.Location = new System.Drawing.Point(787, 3);
-            this.btnFieldsLoadFromTemplate.Name = "btnFieldsLoadFromTemplate";
-            this.btnFieldsLoadFromTemplate.Size = new System.Drawing.Size(111, 24);
-            this.btnFieldsLoadFromTemplate.TabIndex = 4;
-            this.btnFieldsLoadFromTemplate.Text = "Load From Template";
-            this.btnFieldsLoadFromTemplate.UseVisualStyleBackColor = true;
-            this.btnFieldsLoadFromTemplate.Click += new System.EventHandler(this.btnFieldsLoadFromTemplate_Click);
+            this.btnFieldsMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFieldsMoveDown.Location = new System.Drawing.Point(787, 123);
+            this.btnFieldsMoveDown.Name = "btnFieldsMoveDown";
+            this.btnFieldsMoveDown.Size = new System.Drawing.Size(111, 24);
+            this.btnFieldsMoveDown.TabIndex = 8;
+            this.btnFieldsMoveDown.Text = "Move Down";
+            this.btnFieldsMoveDown.UseVisualStyleBackColor = true;
+            this.btnFieldsMoveDown.Click += new System.EventHandler(this.btnFieldsMoveDown_Click);
             // 
-            // btnFieldsLoadFromFile
+            // btnFieldsMoveUp
             // 
-            this.btnFieldsLoadFromFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFieldsLoadFromFile.Location = new System.Drawing.Point(787, 33);
-            this.btnFieldsLoadFromFile.Name = "btnFieldsLoadFromFile";
-            this.btnFieldsLoadFromFile.Size = new System.Drawing.Size(111, 24);
-            this.btnFieldsLoadFromFile.TabIndex = 5;
-            this.btnFieldsLoadFromFile.Text = "Load From File";
-            this.btnFieldsLoadFromFile.UseVisualStyleBackColor = true;
-            this.btnFieldsLoadFromFile.Click += new System.EventHandler(this.btnFieldsLoadFromFile_Click);
-            // 
-            // btnFieldsSaveToFile
-            // 
-            this.btnFieldsSaveToFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFieldsSaveToFile.Location = new System.Drawing.Point(787, 63);
-            this.btnFieldsSaveToFile.Name = "btnFieldsSaveToFile";
-            this.btnFieldsSaveToFile.Size = new System.Drawing.Size(111, 24);
-            this.btnFieldsSaveToFile.TabIndex = 6;
-            this.btnFieldsSaveToFile.Text = "Save To File";
-            this.btnFieldsSaveToFile.UseVisualStyleBackColor = true;
-            this.btnFieldsSaveToFile.Click += new System.EventHandler(this.btnFieldsSaveToFile_Click);
+            this.btnFieldsMoveUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFieldsMoveUp.Location = new System.Drawing.Point(787, 93);
+            this.btnFieldsMoveUp.Name = "btnFieldsMoveUp";
+            this.btnFieldsMoveUp.Size = new System.Drawing.Size(111, 24);
+            this.btnFieldsMoveUp.TabIndex = 7;
+            this.btnFieldsMoveUp.Text = "Move Up";
+            this.btnFieldsMoveUp.UseVisualStyleBackColor = true;
+            this.btnFieldsMoveUp.Click += new System.EventHandler(this.btnFieldsMoveUp_Click);
             // 
             // window
             // 
@@ -432,6 +458,8 @@
         private System.Windows.Forms.Button btnFieldsSaveToFile;
         private System.Windows.Forms.Button btnFieldsLoadFromFile;
         private System.Windows.Forms.Button btnFieldsLoadFromTemplate;
+        private System.Windows.Forms.Button btnFieldsMoveDown;
+        private System.Windows.Forms.Button btnFieldsMoveUp;
     }
 }
 

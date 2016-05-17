@@ -227,11 +227,32 @@ namespace Signature
             if (!String.IsNullOrEmpty(templateData))
             {
                 MatchCollection matchs = Regex.Matches(templateData, @"\[([^~\[\]]+)\]");
+                List<string> fields = new List<string>();
+
                 foreach(Match match in matchs)
                 {
+                    Boolean isMatch = false;
+                    string next = match.Groups[1].Value;
+                    foreach(string field in fields)
+                    {
+                        if(next == field)
+                        {
+                            isMatch = true;
+                            break;
+                        }
+                    }
+
+                    if (!isMatch)
+                    {
+                        fields.Add(next);
+                    }
+                }
+
+                foreach(string field in fields)
+                {
                     DataGridViewRow row = (DataGridViewRow)dgvFields.Rows[0].Clone();
-                    row.Cells[0].Value = match.Groups[1].Value;
-                    row.Cells[1].Value = match.Groups[1].Value;
+                    row.Cells[0].Value = field;
+                    row.Cells[1].Value = field;
 
                     dgvFields.Rows.Add(row);
                 }
@@ -269,6 +290,16 @@ namespace Signature
         {
             dgvFields.Rows.Clear();
             dgvData.Columns.Clear();
+        }
+
+        private void btnFieldsMoveUp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnFieldsMoveDown_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void btnTemplateFileLoad_Click(object sender, EventArgs e)

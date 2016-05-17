@@ -282,6 +282,7 @@
             // btnFieldsSaveToFile
             // 
             this.btnFieldsSaveToFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFieldsSaveToFile.Enabled = false;
             this.btnFieldsSaveToFile.Location = new System.Drawing.Point(787, 63);
             this.btnFieldsSaveToFile.Name = "btnFieldsSaveToFile";
             this.btnFieldsSaveToFile.Size = new System.Drawing.Size(111, 24);
@@ -293,6 +294,7 @@
             // btnFieldsLoadFromFile
             // 
             this.btnFieldsLoadFromFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFieldsLoadFromFile.Enabled = false;
             this.btnFieldsLoadFromFile.Location = new System.Drawing.Point(787, 33);
             this.btnFieldsLoadFromFile.Name = "btnFieldsLoadFromFile";
             this.btnFieldsLoadFromFile.Size = new System.Drawing.Size(111, 24);

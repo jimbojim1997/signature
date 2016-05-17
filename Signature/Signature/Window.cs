@@ -294,12 +294,36 @@ namespace Signature
 
         private void btnFieldsMoveUp_Click(object sender, EventArgs e)
         {
-
+            if(dgvFields.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selected = dgvFields.SelectedRows[0];
+                if (dgvFields.Rows.IndexOf(selected) > 0)
+                {
+                    int index = selected.Index;
+                    DataGridViewRow last = dgvFields.Rows[index - 1];
+                    dgvFields.Rows.Remove(last);
+                    dgvFields.Rows.Insert(index, last);
+                    dgvFields.ClearSelection();
+                    selected.Selected = true;
+                }
+            }
         }
 
         private void btnFieldsMoveDown_Click(object sender, EventArgs e)
         {
-
+            if(dgvFields.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selected = dgvFields.SelectedRows[0];
+                if (dgvFields.Rows.IndexOf(selected) < dgvFields.Rows.Count)
+                {
+                    int index = selected.Index;
+                    DataGridViewRow next = dgvFields.Rows[index + 1];
+                    dgvFields.Rows.Remove(next);
+                    dgvFields.Rows.Insert(index, next);
+                    dgvFields.ClearSelection();
+                    selected.Selected = true;
+                }
+            }
         }
 
         private void btnTemplateFileLoad_Click(object sender, EventArgs e)

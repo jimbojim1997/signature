@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Signature.Properties
+namespace templateCreator.Properties
 {
 
 

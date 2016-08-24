@@ -24,5 +24,30 @@ namespace templateCreator
         {
             InitializeComponent();
         }
+
+        private void btnTemplateLoad_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void btnTemplateReload_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSetSaveLocation_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnVerifyTemplateNameExpression_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCreateTemplates_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

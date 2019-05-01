@@ -78,9 +78,10 @@
                 Margin="0 10 0 0">
 
                 <WebBrowser
-                    x:Name="wbTempaltePreview"
+                    x:Name="wbTemplatePreview"
                     HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"/>
+                    VerticalAlignment="Stretch"
+                    />
             </Border>
 
         </Grid>

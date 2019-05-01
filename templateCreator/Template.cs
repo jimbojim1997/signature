@@ -9,7 +9,6 @@ using System.IO;
 
 namespace TemplateCreator
 {
-    [XmlRoot("template")]
     class Template
     {
         private TemplateData templateData = new TemplateData();
@@ -52,7 +51,7 @@ namespace TemplateCreator
         /// Gets the HTML template string.
         /// </summary>
         /// <returns></returns>
-        public string GetTemplateText()
+        public string GetTemplateHTML()
         {
             return templateData.templateHTML.Value;
         }

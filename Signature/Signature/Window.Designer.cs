@@ -50,6 +50,8 @@
             this.pnlWebBrowse = new System.Windows.Forms.Panel();
             this.wbTemplate = new System.Windows.Forms.WebBrowser();
             this.tabSigFormat = new System.Windows.Forms.TabPage();
+            this.btnFieldsMoveDown = new System.Windows.Forms.Button();
+            this.btnFieldsMoveUp = new System.Windows.Forms.Button();
             this.btnFieldsSaveToFile = new System.Windows.Forms.Button();
             this.btnFieldsLoadFromFile = new System.Windows.Forms.Button();
             this.btnFieldsLoadFromTemplate = new System.Windows.Forms.Button();
@@ -59,8 +61,7 @@
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.field = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabSig = new System.Windows.Forms.TabControl();
-            this.btnFieldsMoveDown = new System.Windows.Forms.Button();
-            this.btnFieldsMoveUp = new System.Windows.Forms.Button();
+            this.btnTemplateFileReload = new System.Windows.Forms.Button();
             this.tabSigFinish.SuspendLayout();
             this.tabSigData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
@@ -108,7 +109,7 @@
             // 
             // btnFileNamesVarify
             // 
-            this.btnFileNamesVarify.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFileNamesVarify.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFileNamesVarify.Location = new System.Drawing.Point(394, 43);
             this.btnFileNamesVarify.Name = "btnFileNamesVarify";
             this.btnFileNamesVarify.Size = new System.Drawing.Size(51, 24);
@@ -145,7 +146,7 @@
             // 
             // btnSaveLocation
             // 
-            this.btnSaveLocation.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveLocation.Location = new System.Drawing.Point(394, 11);
             this.btnSaveLocation.Name = "btnSaveLocation";
             this.btnSaveLocation.Size = new System.Drawing.Size(51, 24);
@@ -185,6 +186,7 @@
             // 
             // tabSigTemplate
             // 
+            this.tabSigTemplate.Controls.Add(this.btnTemplateFileReload);
             this.tabSigTemplate.Controls.Add(this.btnTemplateFileLoad);
             this.tabSigTemplate.Controls.Add(this.btnTemplateFileSave);
             this.tabSigTemplate.Controls.Add(this.tbTemplateFile);
@@ -201,10 +203,10 @@
             // btnTemplateFileLoad
             // 
             this.btnTemplateFileLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTemplateFileLoad.Location = new System.Drawing.Point(756, 2);
+            this.btnTemplateFileLoad.Location = new System.Drawing.Point(682, 2);
             this.btnTemplateFileLoad.Name = "btnTemplateFileLoad";
             this.btnTemplateFileLoad.Size = new System.Drawing.Size(68, 24);
-            this.btnTemplateFileLoad.TabIndex = 4;
+            this.btnTemplateFileLoad.TabIndex = 3;
             this.btnTemplateFileLoad.Text = "Load Template";
             this.btnTemplateFileLoad.UseVisualStyleBackColor = true;
             this.btnTemplateFileLoad.Click += new System.EventHandler(this.btnTemplateFileLoad_Click);
@@ -216,7 +218,7 @@
             this.btnTemplateFileSave.Location = new System.Drawing.Point(830, 2);
             this.btnTemplateFileSave.Name = "btnTemplateFileSave";
             this.btnTemplateFileSave.Size = new System.Drawing.Size(68, 24);
-            this.btnTemplateFileSave.TabIndex = 3;
+            this.btnTemplateFileSave.TabIndex = 5;
             this.btnTemplateFileSave.Text = "Save";
             this.btnTemplateFileSave.UseVisualStyleBackColor = true;
             this.btnTemplateFileSave.Click += new System.EventHandler(this.btnTemplateFileSave_Click);
@@ -228,7 +230,7 @@
             this.tbTemplateFile.Location = new System.Drawing.Point(60, 6);
             this.tbTemplateFile.Name = "tbTemplateFile";
             this.tbTemplateFile.ReadOnly = true;
-            this.tbTemplateFile.Size = new System.Drawing.Size(690, 20);
+            this.tbTemplateFile.Size = new System.Drawing.Size(616, 20);
             this.tbTemplateFile.TabIndex = 2;
             // 
             // lblTemplateFileName
@@ -279,10 +281,31 @@
             this.tabSigFormat.Text = "Format";
             this.tabSigFormat.UseVisualStyleBackColor = true;
             // 
+            // btnFieldsMoveDown
+            // 
+            this.btnFieldsMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFieldsMoveDown.Location = new System.Drawing.Point(787, 123);
+            this.btnFieldsMoveDown.Name = "btnFieldsMoveDown";
+            this.btnFieldsMoveDown.Size = new System.Drawing.Size(111, 24);
+            this.btnFieldsMoveDown.TabIndex = 8;
+            this.btnFieldsMoveDown.Text = "Move Down";
+            this.btnFieldsMoveDown.UseVisualStyleBackColor = true;
+            this.btnFieldsMoveDown.Click += new System.EventHandler(this.btnFieldsMoveDown_Click);
+            // 
+            // btnFieldsMoveUp
+            // 
+            this.btnFieldsMoveUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFieldsMoveUp.Location = new System.Drawing.Point(787, 93);
+            this.btnFieldsMoveUp.Name = "btnFieldsMoveUp";
+            this.btnFieldsMoveUp.Size = new System.Drawing.Size(111, 24);
+            this.btnFieldsMoveUp.TabIndex = 7;
+            this.btnFieldsMoveUp.Text = "Move Up";
+            this.btnFieldsMoveUp.UseVisualStyleBackColor = true;
+            this.btnFieldsMoveUp.Click += new System.EventHandler(this.btnFieldsMoveUp_Click);
+            // 
             // btnFieldsSaveToFile
             // 
             this.btnFieldsSaveToFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFieldsSaveToFile.Enabled = false;
             this.btnFieldsSaveToFile.Location = new System.Drawing.Point(787, 63);
             this.btnFieldsSaveToFile.Name = "btnFieldsSaveToFile";
             this.btnFieldsSaveToFile.Size = new System.Drawing.Size(111, 24);
@@ -294,7 +317,6 @@
             // btnFieldsLoadFromFile
             // 
             this.btnFieldsLoadFromFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFieldsLoadFromFile.Enabled = false;
             this.btnFieldsLoadFromFile.Location = new System.Drawing.Point(787, 33);
             this.btnFieldsLoadFromFile.Name = "btnFieldsLoadFromFile";
             this.btnFieldsLoadFromFile.Size = new System.Drawing.Size(111, 24);
@@ -381,27 +403,16 @@
             this.tabSig.Size = new System.Drawing.Size(914, 551);
             this.tabSig.TabIndex = 1;
             // 
-            // btnFieldsMoveDown
+            // btnTemplateFileReload
             // 
-            this.btnFieldsMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFieldsMoveDown.Location = new System.Drawing.Point(787, 123);
-            this.btnFieldsMoveDown.Name = "btnFieldsMoveDown";
-            this.btnFieldsMoveDown.Size = new System.Drawing.Size(111, 24);
-            this.btnFieldsMoveDown.TabIndex = 8;
-            this.btnFieldsMoveDown.Text = "Move Down";
-            this.btnFieldsMoveDown.UseVisualStyleBackColor = true;
-            this.btnFieldsMoveDown.Click += new System.EventHandler(this.btnFieldsMoveDown_Click);
-            // 
-            // btnFieldsMoveUp
-            // 
-            this.btnFieldsMoveUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFieldsMoveUp.Location = new System.Drawing.Point(787, 93);
-            this.btnFieldsMoveUp.Name = "btnFieldsMoveUp";
-            this.btnFieldsMoveUp.Size = new System.Drawing.Size(111, 24);
-            this.btnFieldsMoveUp.TabIndex = 7;
-            this.btnFieldsMoveUp.Text = "Move Up";
-            this.btnFieldsMoveUp.UseVisualStyleBackColor = true;
-            this.btnFieldsMoveUp.Click += new System.EventHandler(this.btnFieldsMoveUp_Click);
+            this.btnTemplateFileReload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTemplateFileReload.Location = new System.Drawing.Point(756, 2);
+            this.btnTemplateFileReload.Name = "btnTemplateFileReload";
+            this.btnTemplateFileReload.Size = new System.Drawing.Size(68, 24);
+            this.btnTemplateFileReload.TabIndex = 4;
+            this.btnTemplateFileReload.Text = "Reload";
+            this.btnTemplateFileReload.UseVisualStyleBackColor = true;
+            this.btnTemplateFileReload.Click += new System.EventHandler(this.btnTemplateFileReload_Click);
             // 
             // window
             // 
@@ -463,6 +474,7 @@
         private System.Windows.Forms.Button btnFieldsLoadFromTemplate;
         private System.Windows.Forms.Button btnFieldsMoveDown;
         private System.Windows.Forms.Button btnFieldsMoveUp;
+        private System.Windows.Forms.Button btnTemplateFileReload;
     }
 }
 

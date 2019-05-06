@@ -31,11 +31,11 @@ namespace Signature
         private void createSignatures(string templateData, Field[][] data, string saveFilePath, string saveFileNameExpression)
         {
             //go through each signature
-            foreach(Field[] fields in data)
+            foreach (Field[] fields in data)
             {
                 //generate file name
                 string sigName = saveFileNameExpression;
-                foreach(Field field in fields)
+                foreach (Field field in fields)
                 {
                     sigName = replaceField(sigName, field.field, field.data);
                 }
@@ -61,7 +61,7 @@ namespace Signature
             }
 
             int start;
-            while((start = text.IndexOf(field)) != -1)// loop through all fields
+            while ((start = text.IndexOf(field)) != -1)// loop through all fields
             {
                 //check conditionals after [field][~CONDITIONAL]
                 if (start + field.Length < text.Length)
@@ -144,10 +144,11 @@ namespace Signature
             List<List<Field>> data = new List<List<Field>>();
             Field[] headers = getFields();
 
-            foreach(DataGridViewRow row in dgvData.Rows)
+            for (int r = 0; r < dgvData.Rows.Count; r++)
             {
+                DataGridViewRow row = dgvData.Rows[r];
                 List<Field> fields = new List<Field>();
-                for(int i = 0; i < row.Cells.Count; i++)
+                for (int i = 0; i < row.Cells.Count; i++)
                 {
                     fields.Add(new Field(headers[i].name, headers[i].field, (string)row.Cells[i].Value));
                 }
@@ -167,11 +168,11 @@ namespace Signature
         private Field[] getFields()
         {
             List<Field> fields = new List<Field>();
-            
-            foreach(DataGridViewRow row in dgvFields.Rows)
+
+            for (int r = 0; r < dgvFields.Rows.Count; r++)
             {
-                fields.Add(new Field((string)row.Cells[0].Value, (string)row.Cells[1].Value));
-                
+                DataGridViewRow row = dgvFields.Rows[r];
+                fields.Add(new Field(row.Cells[0].Value?.ToString() ?? "", row.Cells[1].Value?.ToString() ?? ""));
             }
 
             return fields.ToArray();
@@ -206,6 +207,60 @@ namespace Signature
                 sr.Write(data);
             }
         }
+
+        private DataTable dgvToDataTable(DataGridView dgv, string tableName)
+        {
+            DataTable table = new DataTable(tableName);
+            foreach (DataGridViewColumn col in dgv.Columns)
+            {
+                table.Columns.Add(col.Name);
+            }
+
+            for (int row = 0; row < dgv.Rows.Count; row++)
+            {
+                table.Rows.Add(table.NewRow());
+                int nullRows = 0;
+                for (int cell = 0; cell < dgv.Columns.Count; cell++)
+                {
+                    if (dgv.Rows[row].Cells[cell].Value == null) nullRows++;
+                    table.Rows[row][cell] = dgv.Rows[row].Cells[cell].Value;
+                }
+                if (nullRows == dgv.Columns.Count)
+                {
+                    table.Rows.RemoveAt(row);
+                    break;
+                }
+            }
+            return table;
+        }
+
+        private void dataTableToDgv(DataGridView dgv, DataTable table)
+        {
+            dgv.Rows.Clear();
+            dgv.Columns.Clear();
+
+            foreach (DataColumn col in table.Columns)
+            {
+                dgv.Columns.Add(col.ColumnName, col.ColumnName);
+            }
+
+            for (int row = 0; row < table.Rows.Count; row++)
+            {
+                dgv.Rows.Add();
+                for (int cell = 0; cell < table.Columns.Count; cell++)
+                {
+                    if (table.Rows[row][cell] is DBNull)
+                    {
+                        dgv.Rows[row].Cells[cell].Value = "";
+                    }
+                    else
+                    {
+                        dgv.Rows[row].Cells[cell].Value = table.Rows[row][cell];
+                    }
+
+                }
+            }
+        }
         #endregion
 
         #region events
@@ -229,13 +284,13 @@ namespace Signature
                 MatchCollection matchs = Regex.Matches(templateData, @"\[([^~\[\]]+)\]");
                 List<string> fields = new List<string>();
 
-                foreach(Match match in matchs)
+                foreach (Match match in matchs)
                 {
                     Boolean isMatch = false;
                     string next = match.Groups[1].Value;
-                    foreach(string field in fields)
+                    foreach (string field in fields)
                     {
-                        if(next == field)
+                        if (next == field)
                         {
                             isMatch = true;
                             break;
@@ -248,7 +303,7 @@ namespace Signature
                     }
                 }
 
-                foreach(string field in fields)
+                foreach (string field in fields)
                 {
                     DataGridViewRow row = (DataGridViewRow)dgvFields.Rows[0].Clone();
                     row.Cells[0].Value = field;
@@ -261,19 +316,42 @@ namespace Signature
 
         private void btnFieldsLoadFromFile_Click(object sender, EventArgs e)
         {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "XML|*.xml|All Files|*.*";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string path = dialog.FileName;
 
+                DataSet dataSet = new DataSet("TemplateData");
+                dataSet.ReadXml(path);
+                if (dataSet.Tables.Contains(nameof(dgvFields))) dataTableToDgv(dgvFields, dataSet.Tables[nameof(dgvFields)]);
+                if (dataSet.Tables.Contains(nameof(dgvData))) dataTableToDgv(dgvData, dataSet.Tables[nameof(dgvData)]);
+            }
         }
 
         private void btnFieldsSaveToFile_Click(object sender, EventArgs e)
         {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "XML|*.xml|All Files|*.*";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string path = dialog.FileName;
 
+                DataTable fields = dgvToDataTable(dgvFields, nameof(dgvFields));
+                DataTable data = dgvToDataTable(dgvData, nameof(dgvData));
+                DataSet dataSet = new DataSet("TemplateData");
+                dataSet.Tables.Add(fields);
+                dataSet.Tables.Add(data);
+
+                dataSet.WriteXml(path);
+            }
         }
 
         private void btnFieldsUpdate_Click(object sender, EventArgs e)
         {
-            if(dgvData.Rows.Count > 1)
+            if (dgvData.Rows.Count > 1)
             {
-                if(MessageBox.Show("You have entries in the Data tab, doing this will delete this data.\nContinue?","Warning!", MessageBoxButtons.YesNo) == DialogResult.No)
+                if (MessageBox.Show("You have entries in the Data tab, doing this will delete this data.\nContinue?", "Warning!", MessageBoxButtons.YesNo) == DialogResult.No)
                 {
                     return;
                 }
@@ -281,7 +359,7 @@ namespace Signature
 
             Field[] headers = getFields();
             dgvData.Columns.Clear();
-            foreach(Field field in headers)
+            foreach (Field field in headers)
             {
                 DataGridViewColumn col = new DataGridViewColumn(new DataGridViewTextBoxCell());
                 col.Name = field.name;
@@ -291,7 +369,7 @@ namespace Signature
                 dgvData.Columns.Add(col);
 
             }
-            dgvData.Columns.RemoveAt(dgvData.Columns.Count-1);
+            dgvData.Columns.RemoveAt(dgvData.Columns.Count - 1);
         }
 
         private void btnFieldsReset_Click(object sender, EventArgs e)
@@ -309,7 +387,7 @@ namespace Signature
 
         private void btnFieldsMoveUp_Click(object sender, EventArgs e)
         {
-            if(dgvFields.SelectedRows.Count > 0)
+            if (dgvFields.SelectedRows.Count > 0)
             {
                 DataGridViewRow selected = dgvFields.SelectedRows[0];
                 if (dgvFields.Rows.IndexOf(selected) > 0)
@@ -326,7 +404,7 @@ namespace Signature
 
         private void btnFieldsMoveDown_Click(object sender, EventArgs e)
         {
-            if(dgvFields.SelectedRows.Count > 0)
+            if (dgvFields.SelectedRows.Count > 0)
             {
                 DataGridViewRow selected = dgvFields.SelectedRows[0];
                 if (dgvFields.Rows.IndexOf(selected) < dgvFields.Rows.Count)
@@ -346,7 +424,7 @@ namespace Signature
             OpenFileDialog fd = new OpenFileDialog();
             fd.Title = "Signature Template";
             fd.Filter = "HTML|*.html";
-            
+
             if (fd.ShowDialog() == DialogResult.OK)
             {
                 templateFilePath = fd.FileName;
@@ -385,13 +463,13 @@ namespace Signature
             MatchCollection matchs = reg.Matches(tbFileNames.Text);
             string noMatch = "";
             Field[] fields = getFields();
-            
-            foreach(Match match in matchs)
+
+            foreach (Match match in matchs)
             {
                 bool hasMatched = false;
-                foreach(Field field in fields)
+                foreach (Field field in fields)
                 {
-                    if(match.Groups[1].Value == field.field)
+                    if (match.Groups[1].Value == field.field)
                     {
                         hasMatched = true;
                         break;
@@ -426,13 +504,18 @@ namespace Signature
                 }
             }
         }
-        #endregion
+
+        private void btnTemplateFileReload_Click(object sender, EventArgs e)
+        {
+
+            templateData = readFile(templateFilePath);
+            wbTemplate.Document.Body.InnerHtml = templateData;
+        }
 
         private void window_Load(object sender, EventArgs e)
         {
 
         }
-
-        
+        #endregion
     }
 }
